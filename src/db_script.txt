@@ -1,0 +1,27 @@
+DROP DATABASE  IF EXISTS `notebook` ;
+
+CREATE DATABASE  `notebook` ;
+
+USE `notebook`;
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  users_id INT  NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  login VARCHAR(30) NOT NULL unique,
+  pass VARCHAR(128) NOT NULL,
+  role INT(1),
+  block_status INT(1)
+); 
+
+INSERT INTO `user` VALUES (1,'Admin','12345', 1, 0), (2,'User','user', 0, 0);
+
+DROP TABLE IF EXISTS `note`;
+CREATE TABLE `note` (
+  id INT  NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  users_id INT,
+  note TEXT NOT NULL,
+  date VARCHAR (20) NOT NULL,
+  FOREIGN KEY (users_id) REFERENCES user (users_id)
+  );
+  
+  
